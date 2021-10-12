@@ -1,13 +1,19 @@
 package com.rapipay.loan.Products;
 
+import com.rapipay.loan.Products.Services.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.math.BigDecimal;
 import java.sql.Date;
+import javax.persistence.*;
 
-import javax.persistence.Table;
+@Entity
+@Table(name = "product_details")
+public class Products {
 
-@Table
-public class products {
-    
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer productId;
     private String productName;
     private BigDecimal principleAmount;
@@ -15,21 +21,20 @@ public class products {
     private BigDecimal roi;
     private Boolean isActive;
     private String createdBy;
-    private Date createdOn;
+    private String createdOn;
     private String updatedBy;
-    private Date updatedOn;
+    private String updatedOn;
 
     // constructor
-    public products() {
+    public Products() {
     }
-    
-    public products(Integer productId, String productName, BigDecimal principleAmount, Integer tenure, BigDecimal roi, Boolean isActive, String createdBy, Date createdOn, String updatedBy, Date updatedOn) {
-        this.productId = productId;
+
+    public Products( String productName, BigDecimal principleAmount, Integer tenure, BigDecimal roi, String createdBy,String updatedBy, String createdOn, String updatedOn) {
         this.productName = productName;
         this.principleAmount = principleAmount;
         this.tenure = tenure;
         this.roi = roi;
-        this.isActive = isActive;
+        this.isActive = true;
         this.createdBy = createdBy;
         this.createdOn = createdOn;
         this.updatedBy = updatedBy;
@@ -40,7 +45,7 @@ public class products {
     public Integer getProductId() {
         return productId;
     }
-    
+
     public void setProductId(Integer productId) {
         this.productId = productId;
     }
@@ -93,11 +98,11 @@ public class products {
         this.createdBy = createdBy;
     }
 
-    public Date getCreatedOn() {
+    public String getCreatedOn() {
         return createdOn;
     }
 
-    public void setCreatedOn(Date createdOn) {
+    public void setCreatedOn(String createdOn) {
         this.createdOn = createdOn;
     }
 
@@ -109,11 +114,11 @@ public class products {
         this.updatedBy = updatedBy;
     }
 
-    public Date getUpdatedOn() {
+    public String getUpdatedOn() {
         return updatedOn;
     }
 
-    public void setUpdatedOn(Date updatedOn) {
+    public void setUpdatedOn(String updatedOn) {
         this.updatedOn = updatedOn;
     }
 
