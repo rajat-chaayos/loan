@@ -11,6 +11,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -67,6 +68,11 @@ public class ProductServiceImpl implements ProductService {
             return  product;
         }
 
+    }
+
+    @Override
+    public List<Products> getAllProducts() {
+        return productRepository.findAll();
     }
 
     @Override

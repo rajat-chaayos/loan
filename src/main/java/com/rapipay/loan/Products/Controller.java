@@ -5,9 +5,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/loan")
 public class Controller {
 
 
@@ -28,6 +29,12 @@ public class Controller {
     public Products getProduct(@RequestParam Integer id) {
         return productService.getProduct(id);
     }
+
+    @RequestMapping(method = RequestMethod.GET, value="getAllProducts")
+    public List<Products> getProduct() {
+        return productService.getAllProducts();
+    }
+
 
     @RequestMapping(method = RequestMethod.PATCH,value ="updateProduct/{id}")
     public Products updateProduct(@PathVariable Integer id, @RequestBody(required = false) Products product) {
