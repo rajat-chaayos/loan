@@ -2,6 +2,7 @@ package com.rapipay.loan.Products;
 
 import com.rapipay.loan.Products.Services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisHash;
 
 import java.math.BigDecimal;
 import java.sql.Date;
@@ -9,6 +10,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "product_details")
+@RedisHash("Product")
 public class Products {
 
 

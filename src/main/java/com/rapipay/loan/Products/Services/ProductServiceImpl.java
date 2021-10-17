@@ -12,7 +12,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -31,8 +30,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Products getProduct(Integer id) {
-        Products product = productRepository.findById(id).orElse(new Products());
-        return product;
+        return productRepository.getProductById(id);
     }
 
     @Override
@@ -45,7 +43,7 @@ public class ProductServiceImpl implements ProductService {
             );
         }
         else{
-            Products product = getProduct(id);
+            Products product = productRepository.getOne(id);
             if(newProduct.getProductName()!=null){
                 product.setProductName(newProduct.getProductName());
             }
@@ -63,7 +61,7 @@ public class ProductServiceImpl implements ProductService {
             }
             product.setUpdatedOn(getCurrentTime());
 
-            productRepository.save(product);
+            productRepository.updateProduct(product);
 
             return  product;
         }
